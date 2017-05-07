@@ -1,83 +1,88 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Train</title>
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Train</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
+
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="jumbotron text-center"><h1>Anytime is Train Time</h1><h3>Choo Choo, Chee Chee.</h3>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron text-center">
+                <h1>Anytime is Train Time</h1>
+                <h3>Choo Choo, Chee Chee.</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                                <th>Train Name</th>
+                                <th>Destination</th>
+                                <th>Frequency (min)</th>
+                                <th>Next Arrival</th>
+                                <th>MInutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>Add Train</strong></h3>
+                </div>
+                <div class="panel-body">
+
+                    <form role="form">
+
+                        <div class="form-group">
+                            <label for="tName">Train Name</label>
+                            <input type="text" class="form-control" id="tName" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="des">Destination</label>
+                            <input type="text" class="form-control" id="des" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fTime">First Train Time(HH:mm - military time)</label>
+                            <input type="text" class="form-control" id="fTime" pattern="" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="freq">Frequency (min)</label>
+                            <input type="number" class="form-control" id="freq" value="">
+                        </div>
+
+                        <button type="button" class="btn btn-danger" id="submitbtn">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-      <div class="panel panel-success">
-      <div class="panel-heading">
-          <h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
-        </div>
-        <div class="panel-body">
-          <table class="table" id="table">
-            <thead>
-              <tr>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Frequency (min)</th>
-                <th>Next Arrival</th>
-                <th>MInutes Away</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-        
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong>Add Train</strong></h3>
-        </div>
-        <div class="panel-body">
-
-          <form role="form">
-              
-            <div class="form-group">
-              <label for="tName">Train Name</label>
-              <input type="text" class="form-control" id="tName" value="">
-            </div>
-            
-            <div class="form-group">
-              <label for="des">Destination</label>
-              <input type="text" class="form-control" id="des" value="">     
-            </div>
-             
-            <div class="form-group">
-              <label for="fTime">First Train Time(HH:mm - military time)</label>
-              <input type="text" class="form-control" id="fTime" pattern=""  value="">
-            </div>
-              
-            <div class="form-group">
-              <label for="freq">Frequency (min)</label>
-              <input type="number" class="form-control" id="freq" value="">
-            </div>
-            
-            <button type="button" class="btn btn-danger" id="submitbtn">Submit</button>
-              
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="assets/javascript/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
+
 </html>

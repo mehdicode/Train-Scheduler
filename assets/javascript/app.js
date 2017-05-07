@@ -9,6 +9,10 @@ var config = {
 
 firebase.initializeApp(config);
 
+setInterval(updateMin, 60000);
+
+
+
 var database = firebase.database();
 
 var name = "";
@@ -17,6 +21,7 @@ var firstTime = "";
 var freq = "";
 var minAway;
 var snapVal = {};
+
 
 $("#submitbtn").on("click", function(event) {
 	event.preventDefault();
@@ -35,8 +40,8 @@ $("#submitbtn").on("click", function(event) {
     $(".form-control").val("");
 });
 
-function addData(dName, dDest, dTime, dFreq) {
-	    var m = moment(new Date());
+function addData(dName, dDest, dTime, dFreq, key) {
+	var m = moment(new Date());
 	var minuteNow = (m.hour()*60) + m.minute();
 	var dM = moment(dTime, "HH:mm");
 	var minute1 = (dM.hour()*60) + dM.minute();
@@ -47,26 +52,45 @@ function addData(dName, dDest, dTime, dFreq) {
 	var nextA = moment().add(minAway, "minutes").format("hh:mm");
 
 
-    addRow = $("<tr>");
-   
-    addRow.append($("<td>").text(dName));
-    addRow.append($("<td>").text(dDest));
-    addRow.append($("<td>").text(dFreq));
-    addRow.append($("<td>").text(nextA));
-	addRow.append($("<td>").text(minAway));
+
+    $("#table > tbody").append("<tr id=" + key + "><td>" + 
+        dName + "</td><td>" + dDest + "</td><td>" + dFreq + "</td><td>" + nextA + 
+        "</td><td>" + minAway + "</td><td><button class='d' key=" + 
+        key + ">Del</button></td>");
 
 
-    $('#table  tbody').append(addRow)
 
 
 };
 
+function updateMin(){
+    $('#table > tbody').empty();
+    database.ref().on("value", function(snapshot){
+        snapshot.forEach(function(snapshotChild){
+            addData(snapVal.dName, snapVal.dDest, snapVal.dTime, snapVal.dFreq, snapshot.key);
+
+        });
+    });
+
+};
+
+$(document).on("click", ".d", function() {
+        alert("hello");
+        var key = $(this).attr("key");
+        database.ref().child(key).remove();
+        $("#" + key).empty();
+    });
+
+
 database.ref().on("child_added", function(snapshot) {
 
-    var snapVal = snapshot.val();
+    snapVal = snapshot.val();
 
-    addData(snapVal.dName, snapVal.dDest, snapVal.dTime, snapVal.dFreq)
+    addData(snapVal.dName, snapVal.dDest, snapVal.dTime, snapVal.dFreq, snapshot.key)
 
 }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
+
+
+
